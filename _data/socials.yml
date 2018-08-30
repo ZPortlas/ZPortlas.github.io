@@ -1,20 +1,26 @@
 - title: "feed"
   href: "https://chrisanthropic.github.io/slim-pickins-jekyll-theme/atom.xml"
 
+
 - title: "googleplus"
   href: "#"
+
 
 - title: "facebook"
   href: "#"
   
+
 - title: "tumblr"
   href: "#"
   
+
 - title: "twitter"
-  href: "https://twitter.com/"
+  href: "#"
+
 
 - title: "github"
-  href: "https://github.com/chrisanthropic/slim-pickins-jekyll-theme"
+  href: "https://github.com/ZPortlas"
+
 
 - title: "linkedin"
-  href: "https://www.linkedin.com/in/ctarwater"
+  href: "#"
