@@ -1,71 +1,175 @@
-# Update 07/09/2018
+slim-pickins-jekyll-theme
+=============
 
-I'm planning to refactor Leonids theme!!!
+Live Demo [HERE](http://chrisanthropic.github.io/slim-pickins-jekyll-theme/)
 
-The goal is really simple: make documentation more intuitive and deployment simpler!!!
+Slim Pickins is what I consider to be a minimal 'core' theme with everything I need to quickly develop new themes for Jekyll.
 
-Here is the plan:
+## Basic features include:
 
-| Version | Description | Date |
-| --- | --- | --- |
-| 1.1 | Jekyll version deployable with gem | 07/15/2018 |
-| 1.2 | New features: Pagination, Prev/Next post | 07/22/2018 |
-| 2.0 | Gatsby or Vuepress version (vote in Issues) | who knows... |
+* Jekyll 3.0 compatible
+* SASS
+* Minimal Zurb Foundation 6 Integration
+    * Responsive grid
+    * Visibility classes
+* Responsive navigation
+* Optional full-width banner
+* Sticky footer
+* **Javascript free**
+* Custom Rakefile with tasks for deploying and notifying search engines about updates
+* image_optim plugin to optimize all images
+* Basic SEO
 
-As the project was and will be designed to improve your writing experience, only documentation, gem, deployment process with CI relevant PRs are acceptable in the future.
+### SASS
+Includes the following variables:
 
-I want you to know how much I value your support.
+**Base Colors**
+* $primary-color
+* $secondary-color
+* $complimentary-color
+* $body-bg
+* $body-font-color
 
-Share it to your timeline!
+**Links**
+* link-color
+* link-hover-color
+* link-visited-color
 
-# Update 05/06/2016
+**Text**
+* $base-font-family
+* $base-font-size
+* $small-font-size
+* $base-line-height
 
-Important! It's better to download the gzipped files instead of forking the repo. I would really appreciate if you could give me a star. 😁
+**Navbar Settings**
+* $navbar-height
+* $navbar-color
+* $navbar-text-color
+* $navbar-hover-color
+* $navbar-active-color
+* $navbar-font-size
+* $navbar-font-family
 
-This project is under MIT license, so feel free to make it your own.
+**Socials Navbar Settings**
+* $socials-font-color
+* $socials-font-size
 
-# Leonids Jekyll Themes
+**Utility**
+* $spacing-unit
 
-**[Leonids](http://renyuanz.github.io/leonids)** is a clean Jekyll theme perfect for powering your GitHub hosted blog.
+**Footer**
+* $footer-height
+* $footer-color
 
-## What is Leonids?
+### GRID
+Uses minimal sass from Zurb Foundation:
 
-* Responsive templates. Looking good on mobile, tablet, and desktop.
-* Simple and clear permalink structure.
-* Support for Disqus Comments.
-* Support for multi-authors.
-* **And** the Leonids (/ˈliːənɪdz/ lee-ə-nidz) are a prolific meteor shower associated with the comet [Tempel-Tuttle](https://en.wikipedia.org/wiki/55P/Tempel%E2%80%93Tuttle).
+* [grid](http://foundation.zurb.com/sites/docs/grid.html)
 
-See a [demo](http://renyuanz.github.io/leonids/) hosted on GitHub.
+### NAVIGATION
+A fully responsive navigation bar with the following features:
 
-## Quick setup
+* 2 navigation areas
+  * Left - Primary navigation 
+  * Right - Social media links
+* Both navigation areas are populated using Jekyll 'data' files, nav.yml and socials.yml respectively
+* Ability to create 'external' links that link offsite while still using socials.yml to do so
+* Easily customizable text, link, and background colors using the supplied sass variables
+
+### BANNER
+This theme is configured with a 'wrap' of 1920px so banner images look best at that width.
+
+First it checks a pages yaml frontmatter for the header image, if none is found then it checks for a site-wide default in your config.yml, if none is found then no banner image is displayed.
+
+**Site-Wide**
+You can set a site-wide default banner image by adding the following to your _config.yml:
+  `header_image: "path/to/image.jpg"`
+
+**Per Page**
+You can also override it per page by adding the following code to a pages yaml front matter:
+  `header_image: path/to/image.jpg`
+
+### STICKY FOOTER
+I like my footers to stay on the bottom of the page no matter what. You can easily edit the size and color using the supplied sass variables.
+
+### JAVASCRIPT FREE
+The only thing in the theme that uses Javascript is the optional use of google analytics.
+
+### RAKEFILE
+Includes the following custom tasks:
+
+* *notify* - pings google and bing to notify them about changes to the site/sitemap
+
+These tasks have been bundled into custom build and deploy tasks
+
+* *build* - runs `jekyll build` followed by `minify_html`
+* *deploy* - runs `s3_website push` and then `notify`
+
+### IMAGE_OPTIM PLUGIN
+
+* Custom [image_optim](https://github.com/chrisanthropic/image_optim-jekyll-plugin) plugin will optimize all images in the /images folder and any subdirectories
+  * Uses the original [image_optim](https://github.com/toy/image_optim)
+* Cache file is created on the first run so that only updated/new images are optimized
+
+### BASIC SEO
+
+* Google Analytics*
+  * *Uses Javascript
+  * just add your `google_universal_analytics ID` to the _config.yml file.
+* Facebook Open Graph
+  Fill out the following in your config.yml
+
+  ```
+    facebook_app_id:                      #enter your App ID
+    facebook_locale: en_US
+    facebook_page:                        #the URL of your Facebook Page
+    facebook_image:			#enter a default image (at least 200x200px) to use here for posts/pages that don't have one.	
+  ```
+
+* Twitter Cards
+  Fill out the following in your config.yml
+
+  ```
+    twitter_user: 
+    twitter_card: true
+    twitter_image: 			 #enter a default image (at least 200x200px) to use here for posts/pages that don't have one.
+  ```
+
+* Sitewide description/keywords
+  * Edit the description in your config.yml and it will be used as the default description in the metadata for every page/post.
+  * Add `Keywords: some, bunch, of random keywords` to your config.yml and it will be used as the default keywords in the metadata for every post/page.
+  * Set specific keywords per page/post (override the sitewide defaults) by adding them to the front matter of any page/post.
+    * Example:
 
 ```
-git clone https://github.com/renyuanz/leonids
-cd leonids
-jekyll server
+---
+Title: Example Post
+Description: Some Yaml Frontmatter to show what's what.
+Keywords: Example, Zim, this is only a test
+---
 ```
 
-Check out your awesome blog at `http://localhost:4000` and Cheers!
+## Basic Use
+For now it's best to start fresh or install the them and then transfer over any old files (posts, images, etc) from your old site.
 
-## Running with Docker
+* Git clone this repo, cd into the directory and run `bundle install --binstubs --path=vendor` to install the required dependencies.
+* Edit your config.yml file
+  * Change the title and description at a minimum.
+* Update your navigation 
+  * edit the `_data/nav.yml` file as needed
+* Update your social links
+  * edit the `_data/socials.yml` file as needed
 
-```
-docker run --rm -it --volume=$PWD:/srv/jekyll -p 4000:4000 jekyll/jekyll:pages jekyll serve --watch --force_polling
-```
+## Deploying
+I use S3 to host my site and the [s3_website](https://github.com/laurilehmijoki/s3_website) plugin to deploy, if you don't do both of these, delete the `s3_website.yml` file and edit the deploy raketask to fit your needs.
 
-## Resume Page by [@Skn0tt](https://github.com/Skn0tt)
-Leonids features a simple resume page. It is divided up into five sections:
+If you plan on using S3 make sure you edit the configs:
 
-* Bio (Edit \_data/index/careers.yml)
-* Education (Edit \_data/index/education.yml)
-* Skills (Edit \_data/index/skills.yml)
-* Projects (Edit \_data/index/projects.yml)
-* About (Edit \_includes/sections/about.html)
+* FIRST - add the s3_website.yml file to your gitignore so your credentials don't end up on the web.
+* s3_website.yml
+  * add your `s3_id`. `s3_secret`, and `s3_bucket`
+* Update the Rakefile notify task to use your url
+  * replace `site = "www.YOUR-URL.com"` with your actual url.
 
-You can put all your info into these files, and they will be featured on the resume page.
-
-## TODO
-
-- [ ] Redesign categories page. Ref: [dribbble: blog category section By Ilja Miskov](https://dribbble.com/shots/2274792-Blog-Category-Selection)
-- [ ] Multi languages support.
+## MISC.
+The blog posts included are duplicated from my actual blog and are the documentation of how I created this theme. From starting with a fresh Jekyll installation to the final product.

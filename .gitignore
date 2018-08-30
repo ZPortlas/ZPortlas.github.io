@@ -1,4 +1,9 @@
-_site
+.bundle
 .sass-cache
-_drafts
-.ruby-version
+_site
+bin
+vendor/ruby
+Gemfile.lock
+images/image_optim_cache.yml
+.jekyll-metadata
+.directory
